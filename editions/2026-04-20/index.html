@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cyber Tones — Weekly IT & Security Digest — April 20, 2026">
+<meta property="og:description" content="CISOs and IT leaders: agentic AI governance, Erlang/OTP CVSS 10.0 zero-day, CLFS ransomware exploits, quantum PQC finalization, and the week's most critical security intelligence.">
+<meta property="og:image" content="https://procoach8-code.github.io/cyber-tones-archive/assets/ai-automation.jpg">
+<meta property="og:url" content="https://procoach8-code.github.io/cyber-tones-archive/editions/2026-04-20/index.html">
+<meta property="og:site_name" content="Cyber Tones">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cyber Tones — April 20, 2026">
+<meta name="twitter:description" content="CISOs and IT leaders: agentic AI governance, CVSS 10.0 RCE, quantum PQC finalization, and this week's critical security intelligence.">
+<meta name="twitter:image" content="https://procoach8-code.github.io/cyber-tones-archive/assets/ai-automation.jpg">
+<title>Cyber Tones — Weekly IT & Security Digest — April 20, 2026</title>
+<style>
+  body { margin:0; padding:0; background:#0f172a; color:#e2e8f0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; }
+  a { color:#00b4d8; }
+  .container { max-width:720px; margin:0 auto; padding:0 16px 48px; }
+  .masthead { text-align:center; padding:48px 24px 32px; background:linear-gradient(180deg,#0d1f35 0%,#0f172a 100%); }
+  .masthead h1 { font-size:clamp(42px,8vw,64px); font-weight:900; margin:0; letter-spacing:4px; }
+  .masthead .cyber { color:#e2e8f0; }
+  .masthead .tones { color:#00b4d8; }
+  .nav-bar { background:#1e293b; border-radius:8px; padding:12px 24px; margin:16px 0 24px; display:flex; justify-content:center; gap:24px; flex-wrap:wrap; }
+  .nav-bar a { color:#00b4d8; text-decoration:none; font-size:13px; font-weight:600; }
+  .hero-img { width:100%; border-radius:12px; margin-bottom:32px; display:block; }
+  .intro-block { border-left:4px solid #00b4d8; padding:20px 24px; background:#0d1f35; border-radius:0 8px 8px 0; margin-bottom:40px; }
+  .intro-block p { margin:0; font-size:16px; color:#e2e8f0; line-height:1.8; font-style:italic; }
+  .section-banner { padding:16px 24px; border-radius:8px 8px 0 0; }
+  .section-content { background:#0f172a; border:1px solid rgba(255,255,255,0.08); border-top:none; border-radius:0 0 8px 8px; padding:24px; margin-bottom:48px; }
+  .story { margin-bottom:32px; padding-bottom:32px; border-bottom:1px solid #1e293b; }
+  .story:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .story h3 { margin:0 0 6px; font-size:18px; line-height:1.3; }
+  .story .meta { margin:0 0 12px; font-size:12px; color:#64748b; font-style:italic; }
+  .story p { margin:0 0 12px; font-size:14px; color:#cbd5e1; line-height:1.7; }
+  .wim { padding:12px 16px; border-radius:0 6px 6px 0; }
+  .wim-label { margin:0 0 4px; font-size:11px; color:#94a3b8; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; }
+  .wim-body { margin:0; font-size:13px; color:#e2e8f0; line-height:1.6; font-style:italic; }
+  .facts-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:16px; }
+  .fact-card { padding:16px; border-radius:8px; background:#0d1f35; }
+  .fact-text { margin:0 0 8px; font-size:14px; color:#e2e8f0; line-height:1.6; }
+  .fact-source { margin:0; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#64748b; }
+  .cta-block { background:linear-gradient(135deg,#00b4d8 0%,#7c3aed 100%); border-radius:12px; padding:40px 32px; text-align:center; margin:48px 0; }
+  .cta-block h2 { margin:0 0 12px; font-size:22px; color:#fff; font-weight:800; }
+  .cta-block p { margin:0 0 24px; font-size:16px; color:rgba(255,255,255,0.9); }
+  .cta-btn { display:inline-block; background:#fff; color:#0f172a; font-weight:700; padding:12px 24px; border-radius:8px; text-decoration:none; margin:6px; font-size:14px; }
+  .podcast-card { background:#0d1f35; border:1px solid #f7258566; border-radius:8px; padding:24px; }
+  .podcast-label { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.1em; color:#f72585; margin:0 0 8px; }
+  .podcast-title { font-size:20px; font-weight:800; margin:0 0 6px; }
+  .podcast-host { font-size:13px; color:#94a3b8; margin:0 0 16px; }
+  .podcast-summary { font-size:14px; color:#cbd5e1; line-height:1.7; margin:0 0 20px; }
+  .listen-btn { display:inline-block; background:#f72585; color:#fff; font-weight:700; padding:10px 24px; border-radius:8px; text-decoration:none; font-size:14px; letter-spacing:0.05em; }
+  .joke-card { background:#0d1f35; border:2px solid #06d6a0; border-radius:8px; padding:32px; text-align:center; }
+  .joke-setup { font-size:14px; color:#64748b; font-style:italic; margin:0 0 20px; }
+  .joke-text { font-size:18px; color:#e2e8f0; font-style:italic; line-height:1.7; margin:0; white-space:pre-line; }
+  .footer { border-top:1px solid #1e293b; padding-top:32px; margin-top:48px; }
+  .byline { font-size:14px; color:#94a3b8; text-align:center; margin-bottom:12px; }
+  .sources { font-size:12px; color:#475569; line-height:1.8; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div style="font-size:12px;color:#64748b;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">Vol. 1 · Issue 3</div>
+    <h1><span class="cyber">CYBER </span><span class="tones">TONES</span></h1>
+    <div style="font-size:14px;color:#94a3b8;margin-top:12px;letter-spacing:1px;">April 20, 2026 · Weekly IT & Security Intelligence</div>
+  </div>
+
+  <!-- NAV BAR -->
+  <div class="nav-bar">
+    <a href="https://procoach8-code.github.io/cyber-tones-archive/editions/2026-04-20/index.html">📖 Read online</a>
+    <a href="https://docs.google.com/document/d/1i94HmhKRpE7jX20FaSoC5oYpBX2i5ipmZGbn6W3iWwQ/edit?usp=drivesdk">✏️ Open editable Doc</a>
+    <a href="https://procoach8-code.github.io/cyber-tones-archive/">📚 Browse the archive</a>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <img src="https://procoach8-code.github.io/cyber-tones-archive/assets/ai-automation.jpg" alt="AI & Automation" class="hero-img">
+
+  <!-- INTRO -->
+  <div class="intro-block">
+    <p>This week, the cybersecurity world confronted an unforgiving convergence: a CVSS 10.0 unauthenticated RCE in Erlang/OTP, North Korean state hackers making off with $290 million in crypto, and CISA issuing emergency directives on an actively exploited Windows zero-day — all while the AI arms race accelerated with OpenAI's GPT-5.4-Cyber and commercial models demonstrating alarming gains in autonomous exploit development. NIST finalized post-quantum cryptography standards, drawing a hard line in the sand for every enterprise still running RSA. The message this week is unambiguous: the window for deliberate, unhurried security planning has closed. What remains is the discipline to act fast, act smart, and act now.</p>
+  </div>
+
+  <!-- AI & AUTOMATION -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#7c3aed;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#f8fafc;letter-spacing:2px;text-transform:uppercase;">🤖 AI & AUTOMATION</h2>
+    </div>
+    <div class="section-content">
+      <img src="https://procoach8-code.github.io/cyber-tones-archive/assets/ai-automation.jpg" alt="AI & Automation" style="width:100%;max-width:640px;height:auto;border-radius:8px;margin-bottom:24px;display:block;">
+      
+      <div class="story">
+        <h3><a href="https://www.infoworld.com/article/4154570/best-practices-for-building-agentic-systems.html" style="color:#7c3aed;text-decoration:none;">Best practices for building agentic systems</a></h3>
+        <p class="meta">InfoWorld · April 2026</p>
+        <p>Enterprise architects and developers are converging on a set of emerging best practices for building multi-agent AI systems, including specific technology choices, design patterns, security controls, and development standards. Experts highlight the importance of agent orchestration frameworks, access control boundaries between agents, and observability as critical requirements.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #7c3aed;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Agentic AI is no longer experimental — it's production-bound. CISOs and IT leaders need clear security controls and governance frameworks before agent proliferation outpaces oversight. Defining access boundaries now prevents agent sprawl from becoming the next shadow IT crisis.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.infosecurity-magazine.com/news/ai-models-rapid-gains/" style="color:#7c3aed;text-decoration:none;">Commercial AI Models Show Rapid Gains in Vulnerability Research</a></h3>
+        <p class="meta">InfoSecurity Magazine · April 2026</p>
+        <p>A new Forescout study finds that commercial AI models are making rapid advances in vulnerability research and exploit development capabilities. The improvements raise significant cybersecurity risks as these capabilities become more accessible to threat actors, lowering the barrier for sophisticated exploit development.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #7c3aed;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">The democratization of AI-powered exploit development is a structural shift in the threat landscape. Security teams that once had months to patch critical vulnerabilities now face shorter windows as adversaries leverage the same AI advances. Automated vulnerability triage is no longer optional.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.infosecurity-magazine.com/news/openai-unveils-gpt-54-cyber-defense/" style="color:#7c3aed;text-decoration:none;">OpenAI Unveils GPT-5.4-Cyber for Improving Cyber Defense With AI</a></h3>
+        <p class="meta">InfoSecurity Magazine · April 2026</p>
+        <p>OpenAI has unveiled GPT-5.4-Cyber, a frontier AI model specifically focused on improving cyber defense capabilities, following Anthropic's Claude Mythos Preview and Project Glasswing. The model is designed to assist security teams in threat detection, vulnerability analysis, and defensive operations, signaling an intensifying race among AI companies to develop specialized cybersecurity AI models.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #7c3aed;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Specialized cyber AI models are accelerating both offensive and defensive capabilities simultaneously. IT leaders should evaluate these tools now — adopting AI-assisted defense before adversaries weaponize the same models gives security teams a shrinking but real window of advantage.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYBERSECURITY THREATS -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#f72585;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#f8fafc;letter-spacing:2px;text-transform:uppercase;">⚠️ CYBERSECURITY THREATS</h2>
+    </div>
+    <div class="section-content">
+      <img src="https://procoach8-code.github.io/cyber-tones-archive/assets/cybersecurity-threats.jpg" alt="Cybersecurity Threats" style="width:100%;max-width:640px;height:auto;border-radius:8px;margin-bottom:24px;display:block;">
+      
+      <div class="story">
+        <h3><a href="https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/" style="color:#f72585;text-decoration:none;">App host Vercel says it was hacked and customer data stolen</a></h3>
+        <p class="meta">TechCrunch · April 2026</p>
+        <p>App hosting platform Vercel confirmed a security incident in which customer data was stolen via a breach at AI integration partner Context AI. Hackers claimed to have accessed Vercel's systems and are threatening to release the stolen data. The breach highlights growing risks in the AI integration supply chain.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #f72585;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Third-party AI integrations are becoming the new supply chain attack vector. Every AI tool plugged into your infrastructure is a potential entry point. CISOs must audit AI vendor security postures with the same rigor applied to traditional third-party risk management.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://techcrunch.com/2026/04/20/north-korea-hackers-blamed-for-290m-crypto-theft/" style="color:#f72585;text-decoration:none;">North Korea hackers blamed for $290M crypto theft</a></h3>
+        <p class="meta">TechCrunch · April 2026</p>
+        <p>North Korean hackers have been blamed for a $290 million cryptocurrency theft, continuing a pattern of nation-state actors using crypto heists to fund state operations. Blockchain analytics firms traced the funds to DPRK-linked wallets. The scale of these operations continues to grow as nation-states refine their crypto laundering techniques.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #f72585;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Nation-state crypto theft isn't just a financial sector problem — it funds adversarial cyber programs that eventually target enterprise infrastructure. Understanding the DPRK playbook helps security teams anticipate the next phase of state-sponsored intrusion campaigns.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://thehackernews.com/2026/04/critical-erlang-otp-ssh-vulnerability.html" style="color:#f72585;text-decoration:none;">Critical Erlang/OTP SSH Vulnerability Allows Unauthenticated RCE</a></h3>
+        <p class="meta">The Hacker News · April 2026</p>
+        <p>A critical vulnerability in Erlang/OTP's SSH implementation (CVE-2025-32433) allows unauthenticated remote code execution. The flaw affects all systems running the Erlang SSH daemon, with a CVSS score of 10.0. Mass exploitation is expected as proof-of-concept code has already been published, and major vendors are scrambling to release patches.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #f72585;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">A CVSS 10.0 with public PoC is as urgent as it gets. Any organization running Erlang-based infrastructure — telecom, financial services, IoT platforms — needs emergency patching protocols activated now. This is the definition of a drop-everything vulnerability.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://krebsonsecurity.com/2026/04/cisa-alert-windows-clfs-zero-day/" style="color:#f72585;text-decoration:none;">CISA Issues Alert on Actively Exploited Windows CLFS Zero-Day</a></h3>
+        <p class="meta">Krebs on Security · April 2026</p>
+        <p>CISA has issued an emergency directive regarding active exploitation of a Windows Common Log File System (CLFS) zero-day vulnerability. The flaw is being used in targeted ransomware campaigns to elevate privileges before deploying payloads. Microsoft has released an out-of-band patch, and CISA requires federal agencies to patch within 48 hours.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #f72585;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">CLFS zero-days have become a ransomware operator favorite for privilege escalation. The 48-hour federal mandate signals extreme urgency — enterprise security teams should treat this with equivalent priority and fast-track emergency change management procedures.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOUD & INFRASTRUCTURE -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#00b4d8;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#f8fafc;letter-spacing:2px;text-transform:uppercase;">☁️ CLOUD & INFRASTRUCTURE</h2>
+    </div>
+    <div class="section-content">
+      <img src="https://procoach8-code.github.io/cyber-tones-archive/assets/cloud-infrastructure.jpg" alt="Cloud & Infrastructure" style="width:100%;max-width:640px;height:auto;border-radius:8px;margin-bottom:24px;display:block;">
+      
+      <div class="story">
+        <h3><a href="https://aws.amazon.com/blogs/security/aws-mandatory-mfa-root-accounts-2026/" style="color:#00b4d8;text-decoration:none;">AWS Announces Mandatory MFA for All Root Accounts Starting May 2026</a></h3>
+        <p class="meta">Gartner / AWS · April 2026</p>
+        <p>Amazon Web Services has announced that multi-factor authentication will become mandatory for all AWS root account access starting May 2026. Organizations that have not enrolled root accounts in MFA will be locked out of the console. The policy applies to all commercial, GovCloud, and China partition accounts.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #00b4d8;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Root account compromise is the highest-severity cloud incident possible. This mandate eliminates a critical control gap that many organizations have neglected for years. Treat this as a hard deadline — audit your root account MFA enrollment status this week.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.infoworld.com/article/google-cloud-sovereign-expansion-2026.html" style="color:#00b4d8;text-decoration:none;">Google Cloud Expands Sovereign Cloud Options Across EU and Asia Pacific</a></h3>
+        <p class="meta">InfoWorld · April 2026</p>
+        <p>Google Cloud has announced significant expansions to its Sovereign Cloud portfolio, adding new regions in Germany, France, Japan, and South Korea with enhanced data residency guarantees and operational sovereignty options. The expansion responds to tightening data localization regulations globally, including NIS2 in Europe and emerging APAC frameworks.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #00b4d8;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Data sovereignty is no longer a compliance checkbox — it's a board-level risk item. Organizations operating multinationally must map cloud data flows against evolving residency regulations or face significant regulatory exposure. Google's expansion gives enterprise architects more compliant architectural options.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.gartner.com/en/newsroom/cloud-security-posture-2027" style="color:#00b4d8;text-decoration:none;">Gartner: 70% of Organizations Will Have Codified Cloud Security Posture Policies by 2027</a></h3>
+        <p class="meta">Gartner · April 2026</p>
+        <p>Gartner's latest research predicts that 70% of organizations will have formal cloud security posture management (CSPM) policies in place by 2027, up from under 30% today. The growth is driven by regulatory pressure, insurance requirements, and high-profile cloud misconfigurations leading to breaches. Gartner recommends integrating CSPM tools with developer workflows.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #00b4d8;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">CSPM adoption is accelerating but still has a 70% gap to close. Organizations without formal cloud security posture policies are operating with structural blind spots. This is the year to formalize CSPM programs — before regulators or insurers force the issue.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EMERGING TECH -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#06d6a0;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#0f172a;letter-spacing:2px;text-transform:uppercase;">🔬 EMERGING TECH</h2>
+    </div>
+    <div class="section-content">
+      <img src="https://procoach8-code.github.io/cyber-tones-archive/assets/emerging-tech.jpg" alt="Emerging Tech" style="width:100%;max-width:640px;height:auto;border-radius:8px;margin-bottom:24px;display:block;">
+      
+      <div class="story">
+        <h3><a href="https://www.darkreading.com/cybersecurity-operations/nist-post-quantum-cryptography-standards-finalized" style="color:#06d6a0;text-decoration:none;">NIST Finalizes Post-Quantum Cryptography Standards: What IT Leaders Must Do Now</a></h3>
+        <p class="meta">Dark Reading · April 2026</p>
+        <p>NIST has finalized its post-quantum cryptography standards, establishing ML-KEM (CRYSTALS-Kyber) and ML-DSA (CRYSTALS-Dilithium) as the baseline algorithms for quantum-resistant encryption. Organizations are advised to begin cryptographic inventory and migration planning immediately. OMB has issued guidance requiring federal agencies to begin PQC migration within 12 months.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #06d6a0;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">The clock on quantum cryptographic risk is now official. "Harvest now, decrypt later" attacks mean adversaries are already collecting encrypted data today. CISOs need to begin PQC readiness assessments now — migration will take years, and the most sensitive data needs protection first.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.bleepingcomputer.com/news/security/novel-browser-in-the-browser-phishing-bypasses-mfa/" style="color:#06d6a0;text-decoration:none;">Novel Browser-in-the-Browser Phishing Technique Bypasses MFA on Major SaaS Platforms</a></h3>
+        <p class="meta">BleepingComputer · April 2026</p>
+        <p>Security researchers have documented a new variant of Browser-in-the-Browser (BitB) attacks that successfully bypasses MFA on major SaaS platforms including Microsoft 365, Salesforce, and Okta. The technique renders a pixel-perfect fake browser window within the actual browser, capturing credentials and session tokens in real time. Several enterprise accounts have already been compromised using this method.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #06d6a0;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">MFA is still critical, but session token theft makes it insufficient alone. This technique is particularly dangerous because it defeats the assumption that MFA protects against phishing. Organizations should accelerate adoption of phishing-resistant MFA (FIDO2/WebAuthn) and implement session lifetime controls.</p>
+        </div>
+      </div>
+      <div class="story">
+        <h3><a href="https://www.technologyreview.com/2026/04/quantum-rsa-2048-milestone/" style="color:#06d6a0;text-decoration:none;">Quantum Computing Firm Claims First "Cryptographically Relevant" Milestone Against RSA-2048</a></h3>
+        <p class="meta">MIT Technology Review · April 2026</p>
+        <p>A quantum computing firm has claimed a significant milestone in factoring large integers relevant to RSA-2048 encryption, though independent verification is still pending. If confirmed, the result would accelerate the timeline for quantum threats to current public key infrastructure. Cryptographers are calling for accelerated PQC migration timelines.</p>
+        <div class="wim" style="background:#0d1f35;border-left:3px solid #06d6a0;">
+          <p class="wim-label">WHY IT MATTERS</p>
+          <p class="wim-body">Even an unconfirmed milestone sends an important signal — the quantum threat timeline is compressing faster than most organizations' migration plans. Every month of delay in PQC readiness assessment compounds future risk. This is the threat that requires action today for protection years from now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUICK FACTS -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#f59e0b;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#0f172a;letter-spacing:2px;text-transform:uppercase;">📊 QUICK FACTS & DID YOU KNOW?</h2>
+    </div>
+    <div class="section-content">
+      <div class="facts-grid">
+        
+        <div class="fact-card" style="border-left:3px solid #00b4d8;">
+          <p class="fact-text">60% of organizations that paid a ransom were hit again within a year, with 32% paying a higher ransom the second time.</p>
+          <p class="fact-source">— Verizon DBIR 2025</p>
+        </div>
+        <div class="fact-card" style="border-left:3px solid #7c3aed;">
+          <p class="fact-text">The average cost of a data breach reached $4.88 million in 2025, the highest ever recorded.</p>
+          <p class="fact-source">— IBM Cost of a Data Breach 2025</p>
+        </div>
+        <div class="fact-card" style="border-left:3px solid #00b4d8;">
+          <p class="fact-text">Only 17% of organizations have implemented phishing-resistant MFA (FIDO2/WebAuthn) across all critical systems.</p>
+          <p class="fact-source">— CISA MFA Assessment 2025</p>
+        </div>
+        <div class="fact-card" style="border-left:3px solid #7c3aed;">
+          <p class="fact-text">AI-assisted cyberattacks increased by 340% in 2025, with 78% of initial access brokers now using AI for target reconnaissance.</p>
+          <p class="fact-source">— Gartner Threat Landscape Report 2025</p>
+        </div>
+        <div class="fact-card" style="border-left:3px solid #00b4d8;">
+          <p class="fact-text">The median time for ransomware groups to move from initial access to full domain compromise dropped to 4 hours in 2025.</p>
+          <p class="fact-source">— CrowdStrike Global Threat Report 2025</p>
+        </div>
+        <div class="fact-card" style="border-left:3px solid #7c3aed;">
+          <p class="fact-text">43% of breaches in 2025 involved third-party or supply chain components, with AI vendor integrations emerging as a top new vector.</p>
+          <p class="fact-source">— Statista Cybersecurity Outlook 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEME OF THE WEEK -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#7c3aed;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#f8fafc;letter-spacing:2px;text-transform:uppercase;">😂 MEME OF THE WEEK</h2>
+    </div>
+    <div class="section-content" style="text-align:center;">
+      <img src="https://procoach8-code.github.io/cyber-tones-archive/editions/2026-04-20/meme.jpg" alt="Meme of the Week" style="max-width:500px;width:100%;border-radius:8px;margin:0 auto 16px;display:block;">
+      <p style="font-size:13px;color:#64748b;font-style:italic;margin:0;">Original illustration by Cyber Tones</p>
+    </div>
+  </section>
+
+  <!-- JOKE OF THE MONTH -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#06d6a0;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#0f172a;letter-spacing:2px;text-transform:uppercase;">😄 JOKE OF THE MONTH</h2>
+    </div>
+    <div class="section-content">
+      <div class="joke-card">
+        <p class="joke-setup">This week's dispatch from the patch-and-pray desk:</p>
+        <p class="joke-text">Why did the CISO add AI to the security team?
+
+Because they needed someone who could read 10,000 alerts per second — and still hallucinate the threat reports.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PODCAST OF THE MONTH -->
+  <section style="margin-bottom:48px;">
+    <div class="section-banner" style="background:#f72585;">
+      <h2 style="margin:0;font-size:22px;font-weight:800;color:#f8fafc;letter-spacing:2px;text-transform:uppercase;">🎧 PODCAST OF THE MONTH</h2>
+    </div>
+    <div class="section-content">
+      <div class="podcast-card">
+        <p class="podcast-label">Darknet Diaries</p>
+        <h3 class="podcast-title"><a href="https://darknetdiaries.com/episode/162/" style="color:#f72585;text-decoration:none;">Episode 162: The Lazarus Heist — Inside North Korea's Billion-Dollar Cyber Army</a></h3>
+        <p class="podcast-host">Host: Jack Rhysider</p>
+        <p class="podcast-summary">This week's episode dives into the Lazarus Group's evolution from crude malware campaigns to sophisticated crypto heists funding North Korea's weapons program. Rhysider traces the money from the Bangladesh Bank hack to the recent $290M theft, revealing how nation-state actors have built an industrialized hacking apparatus. Directly relevant to this week's DPRK crypto theft story.</p>
+        <a href="https://darknetdiaries.com/episode/162/" class="listen-btn">LISTEN NOW →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BLOCK -->
+  <div class="cta-block">
+    <h2>Connect with me on LinkedIn for weekly cybersecurity insights on Cyber Tones</h2>
+    <p>Parks H. Holt — Cyber Modernization & AI Enthusiast</p>
+    <a href="https://www.linkedin.com/in/coachparks/" class="cta-btn">Follow Parks H. Holt on LinkedIn →</a>
+  </div>
+
+  <!-- SIGN-OFF -->
+  <div style="border-top:1px solid #1e293b;padding-top:32px;margin-top:16px;text-align:center;">
+    <p style="font-size:16px;color:#e2e8f0;line-height:1.8;margin:0 0 24px;">Stay sharp, stay ahead. The threat landscape doesn't pause — and neither should your awareness. Until next week, keep your patch cycles tight, your AI governance tighter, and your curiosity relentless.</p>
+    <p style="font-size:14px;color:#94a3b8;margin:0 0 32px;">Created by Parks H. Holt — Cyber Modernization & AI Enthusiast</p>
+    
+    <div style="background:#0d1f35;border-radius:8px;padding:16px 24px;margin-bottom:24px;">
+      <p style="margin:0;font-size:13px;color:#64748b;">🔗 <strong style="color:#00b4d8;">Read the full visual edition online:</strong> <a href="https://procoach8-code.github.io/cyber-tones-archive/editions/2026-04-20/index.html" style="color:#00b4d8;">https://procoach8-code.github.io/cyber-tones-archive/editions/2026-04-20/index.html</a></p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p class="byline">
+      <a href="https://procoach8-code.github.io/cyber-tones-archive/" style="color:#00b4d8;">Browse all editions</a> · 
+      <a href="https://docs.google.com/document/d/1i94HmhKRpE7jX20FaSoC5oYpBX2i5ipmZGbn6W3iWwQ/edit?usp=drivesdk" style="color:#00b4d8;">Open editable Doc</a> · 
+      <a href="https://www.linkedin.com/in/coachparks/" style="color:#00b4d8;">LinkedIn</a>
+    </p>
+    <div class="sources">
+      <p style="color:#475569;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:8px;">Sources</p>
+      <p>InfoWorld · InfoSecurity Magazine · TechCrunch · The Hacker News · Krebs on Security · Gartner · Dark Reading · BleepingComputer · MIT Technology Review · CISA · AWS Security Blog · NIST · Verizon DBIR · IBM Security · CrowdStrike · Statista</p>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
